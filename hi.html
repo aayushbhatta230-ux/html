@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3:47am · i finally hear you</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            color: #f0e6ff;
+            line-height: 1.8;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+       /* your background image */
+.background {
+    position: fixed;it's
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: url('https://i.ibb.co/vCQyw4bD/Screenshot-2026-01-14-174456-removebg-preview.png') center/cover no-repeat;
+background-size: 100% auto; 
+    background-position: center 70%;  /* Adjust this until it's perfect */
+    filter: brightness(0.4) saturate(1.2);
+    border: 2px solid red; /* Temporary - remove when done */
+}
+        /* overlay to make text readable */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, rgba(10, 5, 20, 0.7), rgba(30, 15, 40, 0.8));
+            z-index: -1;
+        }
+
+        /* floating particles - soft glow */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 230, 200, 0.3);
+            border-radius: 50%;
+            filter: blur(3px);
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        h1, h2, h3 {
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 1.1;
+            font-weight: 300;
+            color: #fff5f0;
+            text-shadow: 0 0 30px rgba(255, 200, 200, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            color: #f0d0ff;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(200, 150, 255, 0.3);
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, #ffb6c1, #c0a0e0, transparent);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* elegant navigation */
+        .nav-bar {
+            background: rgba(15, 10, 25, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 200, 220, 0.2);
+            border-radius: 60px;
+            padding: 1.2rem;
+            margin: 2rem auto 3rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .nav-item {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: #e0c0ff;
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 200, 220, 0.15);
+            color: #ffffff;
+            border-color: rgba(255, 200, 220, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 180, 200, 0.2);
+            color: #ffecf0;
+            border-color: #ffb6c1;
+            box-shadow: 0 0 20px rgba(255, 180, 200, 0.3);
+        }
+
+        /* pages */
+        .page {
+            display: none;
+            animation: dreamFade 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 70vh;
+        }
+
+        .page:target {
+            display: block;
+        }
+
+        #home {
+            display: block;
+        }
+
+        @keyframes dreamFade {
+            0% { opacity: 0; transform: translateY(30px) scale(0.98); filter: blur(5px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        /* dream cards */
+        .dream-card {
+            background: rgba(20, 12, 30, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 200, 220, 0.2);
+            border-radius: 40px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dream-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 220, 240, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .dream-card:hover:before {
+            left: 100%;
+        }
+
+        .dream-card:hover {
+            border-color: rgba(255, 200, 220, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        }
+
+        .dream-card p {
+            font-size: 1.3rem;
+            margin-bottom: 1.8rem;
+            color: #f0e0f5;
+            font-weight: 300;
+            line-height: 2;
+        }
+
+        /* glow orb (instead of gifs) */
+        .glow-orb {
+            width: 180px;
+            height: 180px;
+            margin: 2rem auto;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffb6c1, #8a6ab0, #3a2a5a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 0 80px #ffb6c1, 0 0 40px #c0a0e0 inset;
+            animation: orbPulse 4s infinite ease-in-out;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .glow-orb:after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,200,220,0.4), transparent 70%);
+            z-index: -1;
+            animation: orbGlow 4s infinite ease-in-out;
+        }
+
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 80px #ffb6c1, 0 0 40px #c0a0e0 inset; }
+            50% { transform: scale(1.05); box-shadow: 0 0 120px #ffc0cb, 0 0 60px #d0b0ff inset; }
+        }
+
+        @keyframes orbGlow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .glow-orb:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* split sections */
+        .dream-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+
+        .dream-box {
+            background: rgba(18, 10, 28, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 200, 220, 0.2);
+            border-radius: 30px;
+            padding: 2.5rem;
+            transition: 0.3s;
+        }
+
+        .dream-box:hover {
+            border-color: rgba(255, 200, 220, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .dream-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ffd0e0;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        /* dream list */
+        .dream-list {
+            list-style: none;
+        }
+
+        .dream-list li {
+            margin: 1.5rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 1.2rem;
+            color: #e0d0f0;
+            font-weight: 300;
+        }
+
+        .dream-list li:before {
+            content: '🌙';
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-size: 1.4rem;
+            filter: drop-shadow(0 0 8px #ffb6c1);
+        }
+
+        /* journey of understanding */
+        .dream-journey {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .dream-step {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            background: rgba(20, 12, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 200, 220, 0.2);
+            padding: 2rem;
+            border-radius: 60px;
+            transition: 0.4s;
+        }
+
+        .dream-step:hover {
+            border-color: rgba(255, 200, 220, 0.5);
+            transform: translateX(15px);
+            background: rgba(30, 18, 40, 0.8);
+        }
+
+        .step-icon {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #6a4a8a, #2a1a3a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            box-shadow: 0 0 40px #b090d0;
+            flex-shrink: 0;
+        }
+
+        .step-text h4 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #ffd0e0;
+            font-weight: 300;
+        }
+
+        .step-text p {
+            font-size: 1.2rem;
+            color: #d0c0e0;
+            font-weight: 300;
+        }
+
+        /* the letter - most emotional */
+        .dream-letter {
+            background: rgba(15, 8, 25, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 200, 220, 0.3);
+            border-radius: 50px;
+            padding: 4rem;
+            margin: 4rem 0;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        }
+
+        .dream-letter:before {
+            content: '“';
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-size: 10rem;
+            color: rgba(255, 200, 220, 0.2);
+            font-family: serif;
+            pointer-events: none;
+        }
+
+        .dream-letter:after {
+            content: '”';
+            position: absolute;
+            bottom: -80px;
+            right: 20px;
+            font-size: 10rem;
+            color: rgba(255, 200, 220, 0.2);
+            font-family: serif;
+            pointer-events: none;
+        }
+
+        .dream-letter p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: #f0e0ff;
+            font-weight: 300;
+            line-height: 2.2;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
+        }
+
+        .letter-signature {
+            margin-top: 4rem;
+            font-size: 2.5rem;
+            color: #ffd0e0;
+            text-align: right;
+            font-style: italic;
+            text-shadow: 0 0 20px rgba(255, 200, 220, 0.5);
+        }
+
+        /* heart messages */
+        .dream-heart {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(25, 15, 35, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 80px;
+            border: 1px solid rgba(255, 200, 220, 0.2);
+            margin: 4rem 0;
+        }
+
+        .dream-heart p {
+            font-size: 1.8rem;
+            color: #ffe0f0;
+            font-weight: 300;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+        }
+
+        /* connection moments */
+        .connection-moments {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 4rem 0;
+        }
+
+        .moment {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(20, 12, 30, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 200, 220, 0.15);
+            transition: 0.3s;
+        }
+
+        .moment:hover {
+            border-color: rgba(255, 200, 220, 0.4);
+            transform: translateY(-5px);
+            background: rgba(30, 18, 40, 0.7);
+        }
+
+        .moment span {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 15px #ffb6c1);
+        }
+
+        .moment p {
+            font-size: 1.1rem;
+            color: #d0c0e0;
+        }
+
+        /* footer */
+        footer {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+            color: #a088b0;
+            border-top: 1px solid rgba(255, 200, 220, 0.2);
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* floating elements */
+        .floating-element {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 3rem;
+            opacity: 0.4;
+            pointer-events: none;
+            animation: floatSoft 8s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px #ffb6c1);
+            z-index: 10;
+        }
+
+        @keyframes floatSoft {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .dream-split {
+                grid-template-columns: 1fr;
+            }
+            .dream-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            .connection-moments {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dream-letter {
+                padding: 2rem;
+            }
+            .dream-letter p {
+                font-size: 1.2rem;
+            }
+            .nav-bar {
+                padding: 0.8rem;
+            }
+            .nav-item {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* time stamp */
+        .time-stamp {
+            text-align: center;
+            color: #b090c0;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            margin: 2rem 0;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        /* divider */
+        .dream-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            color: #806090;
+        }
+
+        .dream-divider span {
+            font-size: 1.2rem;
+        }
+
+        .dream-divider:before, .dream-divider:after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffb6c1, transparent);
+        }
+    </style>
+</head>
+<body>
+    <!-- your beautiful background image -->
+    <div class="background"></div>
+    <div class="overlay"></div>
+    
+    <!-- floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- floating moon -->
+    <div class="floating-element">🌙</div>
+
+    <div class="container">
+        <!-- intimate time stamp -->
+        <div class="time-stamp">3:47 AM · I REALLY CRAVE YOUR PRESENCE</div>
+
+        <!-- navigation -->
+        <div class="nav-bar">
+            <a href="#home" class="nav-item">🌙 HOME</a>
+            <a href="#between" class="nav-item">🌫️ BETWEEN US</a>
+            <a href="#hear" class="nav-item">👂 I HEAR YOU</a>
+            <a href="#letter" class="nav-item">📝 3:47AM LETTER</a>
+            <a href="#somewhere" class="nav-item">✨ SOMEWHERE</a>
+        </div>
+
+        <!-- HOME PAGE -->
+        <section id="home" class="page">
+            <div style="text-align: center; padding: 3rem 1rem;">
+                <div class="glow-orb">🌙🫂</div>
+                <h1>it's 3:47am<br>and i really miss you<br>a lot</h1>
+                <p style="font-size: 1.5rem; max-width: 600px; margin: 2rem auto; color: #d0b0e0; font-weight: 300;">the world is asleep, so are you. the stars are out. and i've been lying here, replaying every memories, finally realizing what my mistakes led to.</p>
+            </div>
+
+            <div class="dream-card">
+                <p style="font-size: 1.5rem; text-align: center;">"you kept saying 'I didn't understand you'</p>
+                <p style="text-align: center;">and i kept saying 'i do'</p>
+                <p style="text-align: center;">but maybe I really didn't. not until the day i felt i could really lose you forever.</p>
+                <p style="text-align: center; margin-top: 2rem;">now, in the silence, with nothing but the my heart shouting... i miss every of your yapping, i miss your face, the face without glasses with glasses, i really miss everything."</p>
+            </div>
+
+            <div class="connection-moments">
+                <div class="moment">
+                    <span>🌙</span>
+                    <p>you tried</p>
+                </div>
+                <div class="moment">
+                    <span>🫀</span>
+                    <p>i failed</p>
+                </div>
+                <div class="moment">
+                    <span>🕯️</span>
+                    <p>i'm learning</p>
+                </div>
+                <div class="moment">
+                    <span>✨</span>
+                    <p>I regret</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BETWEEN US - the problem -->
+        <section id="between" class="page">
+            <h2>what lived in the space between us</h2>
+
+            <div class="dream-split">
+                <div class="dream-box">
+                    <h3>what you carried</h3>
+                    <ul class="dream-list">
+                        <li>you'd speak from your heart, and all I did was maybe showed as if i didnt really care</li>
+                        <li>i made you feel like i was offended when things were not according to me</li>
+                        <li>you needed space but i always wanted to be there</li>
+                        <li>you'd be vulnerable, and i'd make it about me</li>
+                        <li>you'd say "i need space," and i'd hear "you're not enough"</li>
+                        <li>you'd ask for solution, and i'd want connection</li>
+                    </ul>
+                </div>
+                <div class="dream-box">
+                    <h3>what i didn't see</h3>
+                    <ul class="dream-list">
+                        <li>that your overthinking was just sadness in armor</li>
+                        <li>that your frustration meant you still believed in us</li>
+                        <li>that every fight was you wanting me to understand you even deeper</li>
+                        <li>that "you never understand" was the truest thing you ever said in some sense</li>
+                        <li>that you were lonely even when i was right there</li>
+                        <li>that you just wanted to be alone sometimes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dream-card" style="text-align: center;">
+                <p style="font-size: 2rem;">🕯️</p>
+                <p>the space between us wasn't empty. it was filled with everything you tried to say and everything i refused to hear.</p>
+            </div>
+        </section>
+
+        <!-- I HEAR YOU - realization -->
+        <section id="hear" class="page">
+            <h2>what your heart was screaming</h2>
+
+            <div class="dream-journey">
+                <div class="dream-step">
+                    <div class="step-icon">💭</div>
+                    <div class="step-text">
+                        <h4>"we might not make it if this is it"</h4>
+                        <p>and maybe my actions sounded "you're just overthinking" instead of "i'm right here, i'm not going anywhere". i feel it everytime but i failed to make you realize that.</p>
+                    </div>
+                </div>
+                <div class="dream-step">
+                    <div class="step-icon">😔</div>
+                    <div class="step-text">
+                        <h4>"i feel so alone next to you"</h4>
+                        <p>and i felt offended instead of "i'm sorry, tell me how to be closer"</p>
+                    </div>
+                </div>
+                <div class="dream-step">
+                    <div class="step-icon">🫂</div>
+                    <div class="step-text">
+                        <h4>"can you justleave me alone for a while?"</h4>
+                        <p>and i tried to fix whatever was wrong instead of just holding you</p>
+                    </div>
+                </div>
+                <div class="dream-step">
+                    <div class="step-icon">🌙</div>
+                    <div class="step-text">
+                        <h4>"do you even love me anymore?"</h4>
+                        <p>and you only asked because my actions weren't showing it. i'm sorry.</p>
+                    </div>
+                </div>
+                <div class="dream-step">
+                    <div class="step-icon">🕊️</div>
+                    <div class="step-text">
+                        <h4>"i just want to be heard"</h4>
+                        <p>that was it. that was always it. you just wanted me to hear you. and i didn't.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dream-heart">
+                <p>i hear you in ways noone could but I was driven with my overthinking and non'communicative behaviour.</p>
+                <p>every word you never said. every cry i missed. every time you just wanted to be seen by the one person who should have seen you most.</p>
+                <p style="font-size: 3rem; margin-top: 2rem;">🩵</p>
+            </div>
+        </section>
+
+        <!-- THE LETTER - most emotional -->
+        <section id="letter" class="page">
+            <h2>what i should have said at 3:47am</h2>
+
+            <div class="dream-letter">
+                <p>it's 3:47am and the whole world is asleep except me and my regrets.</p>
+                
+                <p>i finally get it. all of it.</p>
+                
+                <p>i get that when you talked to me for the last time, it was pain trying to be heard after being ignored for so long.</p>
+                
+                <p>i get that when you went quiet, it wasn't coldness, it was you protecting the last tiny piece of your heart because maybe i kept hurting it.</p>
+                
+                <p>i get that every argument, every fight, every difficult conversation, you were just saying "please see me. please hear me."</p>
+                
+                <p>and i was so busy being right. so busy defending my ego. so busy protecting myself from feeling like a failure... that i let you feel alone. in our relationship. with me right there beside you.</p>
+                
+                <p>that's what breaks me now. that you were lonely while loving me. that you reached out and reached out and i kept missing it.</p>
+                
+                <p>i'm sorry. i'm so sorry it took losing you to finally understand.</p>
+                
+                                
+                <p>you deserved to be held,not pushed away, not fixed. listened to, not argued with. seen, not dismissed.</p>
+                
+                <p>i see you. completely. in the quiet of this night, with nothing but this yellowish moon witness, i see you.</p>
+                
+                                
+                <p> thank you for existing.</p>
+                
+                <div class="letter-signature">— Someone that misses fucchu from your voice.</div>
+            </div>
+
+            <div style="text-align: center;">
+                <div class="glow-orb" style="width: 120px; height: 120px; font-size: 3rem;">🕯️</div>
+            </div>
+        </section>
+
+        <!-- SOMEWHERE - hope and peace -->
+        <section id="somewhere" class="page">
+            <h2>somewhere between then and now</h2>
+
+            <div class="dream-card" style="text-align: center;">
+                <div class="glow-orb" style="margin: 0 auto 2rem;">✨🌙✨</div>
+                
+                <p style="font-size: 1.8rem;">somewhere between who we were and who we're becoming, there's a version of us that understood each other.</p>
+                
+                <div class="dream-divider">
+                    <span>🌙</span>
+                </div>
+                
+                <p style="font-size: 1.4rem;">i can't go back and be that person. but i can carry this forward, the understanding, the ability to finally hear, the willingness to truly listen.</p>
+
+                <div style="background: rgba(30, 18, 40, 0.8); border-radius: 60px; padding: 3rem; margin: 3rem 0;">
+                    <p style="font-size: 1.6rem; font-style: italic;">"thank you for trying to reach me. even when i couldn't hear. even when i failed. thank you for loving me enough to fight for us."</p>
+                </div>
+
+                <p>i don't know what happens next. maybe nothing. maybe everything. maybe somewhere in the universe, there's a timeline where i got it right the first time.</p>
+                
+                <p>but in this one, i want you to know you changed me. your voice, even when i couldn't hear it, even when you pushed it away... it stayed. and eventually, it got through.</p>
+                
+                <div style="margin: 3rem 0;">
+                    <p style="font-size: 2.5rem;">🩵</p>
+                </div>
+                
+                                
+                <p style="margin-top: 3rem; font-size: 1.5rem; color: #c0a0e0;">thank you. for everything. for trying. for caring. for being you.</p>
+
+                <div style="margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; font-size: 2.5rem;">
+                    <span>🌙</span>
+                    <span>✨</span>
+                    <span>🕯️</span>
+                    <span>🩵</span>
+                    <span>🕊️</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <p>it's late and i really need you · 4:14am </p>
+            <div style="font-size: 1.2rem; margin-top: 1rem;">🌙 i understand now </div>
+        </footer>
+    </div>
+
+    <script>
+        // create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 6 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = 10 + Math.random() * 20 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // active navigation
+        function updateNav() {
+            let hash = window.location.hash || '#home';
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === hash) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('hashchange', updateNav);
+        window.addEventListener('load', updateNav);
+
+        if (!window.location.hash) {
+            window.location.hash = '#home';
+        }
+
+        // click on orbs for intimate messages
+        document.querySelectorAll('.glow-orb').forEach(orb => {
+            orb.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => this.style.transform = '', 200);
+                
+                if (this.innerText.includes('🌙')) {
+                    alert('🌙 this glow is for every night you felt alone');
+                } else if (this.innerText.includes('🕯️')) {
+                    alert('🕯️ a light in the darkness, for you');
+                } else if (this.innerText.includes('✨')) {
+                    alert('✨ a wish that you are peaceful');
+                } else if (this.innerText.includes('🫂')) {
+                    alert('🫂 i should have held you more. i'm sorry.');
+                }
+            });
+        });
+
+        // personal console message
+        console.log('%c🌙 3:47am · i finally hear you', 'color: #ffb6c1; font-size: 18px; font-weight: 300;');
+        console.log('%cevery word. every cry. every time you tried.', 'color: #d0b0e0; font-size: 14px;');
+        console.log('%ci hear it all now. i hear you.', 'color: #c0a0e0; font-size: 14px; font-style: italic;');
+        console.log('%c- the one who finally understands', 'color: #ffb6c1; font-size: 12px;');
+
+        // add a little heart that appears on scroll
+        window.addEventListener('scroll', function() {
+            // just a little something
+        });
+    </script>
+</body>
+</html>
